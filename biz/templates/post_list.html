@@ -1,0 +1,18 @@
+{%block content%}
+<h1>Bizseries Blog</h1>
+{% if tag %}
+<h2>Posts tagged with'{{tag.name}}'</h2>
+{%endif%}
+{% for post in post_list %}
+<a herf="{{post.get_absolute_url}}"><h2>{{post.title}}</h2></a>
+<p>Published on {{post.publish}} by {{post.author|title}}</p>
+<p>Tags:
+    {% for tag in post.tags.all %}
+    <a herf="{%url 'post_list_by_tag_name' tag.slug %}">{{tag.name}}</a>
+    {% if not forloop.last %},{%endif%}
+    {% endfor %}
+</p>
+{{post.body|truncatewords:30|linebrake}}
+{{%endfor%}}
+{% include 'blog/pagination.html' with page=post_list %}
+{% endblock %}

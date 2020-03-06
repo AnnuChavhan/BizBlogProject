@@ -1,0 +1,8 @@
+<!--< no nee of html as we will be including this in post_list.html>-->
+<div class="paginator" xmlns="http://www.w3.org/1999/html">
+    {%if page.has_previous%}
+    <a herf="?page={{page.previous_page_number}}">Previous</a>&nbsp&nbsp
+    {%if page.has_next%}
+    <a herf="?page={{page.next_page_number}}">Next</a>
+    {%endif%}
+</div>
